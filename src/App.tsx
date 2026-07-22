@@ -45,8 +45,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { resources, Resource } from "./data/resources";
-
-const LOGO_URL = "https://storage.googleapis.com/birdseye-public/files/input_file_0.png";
+const LOGO_URL = "https://lh3.googleusercontent.com/d/1N5Ixxr4vpAJD7xVuQZXSYHwOGj3Fx_rg";
 const BROCHURE_P1 = "https://storage.googleapis.com/birdseye-public/files/input_file_1.png";
 const BROCHURE_P2 = "https://storage.googleapis.com/birdseye-public/files/input_file_2.png";
 const BANNER_URL = "https://storage.googleapis.com/birdseye-public/files/input_file_3.png";
@@ -86,7 +85,9 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           <Link to="/" className="flex items-center gap-3">
-            <img src={LOGO_URL} alt="Runner's High Logo" className="w-12 h-12 object-contain" referrerPolicy="no-referrer" />
+            <div className="w-14 h-14 rounded-full overflow-hidden flex items-center justify-center bg-transparent">
+              <img src={LOGO_URL} alt="Runner's High Logo" className="w-full h-full object-cover scale-[1.15]" referrerPolicy="no-referrer" />
+            </div>
             <span className="text-2xl font-bold text-brand-navy tracking-tight hidden sm:block">Runner's High</span>
           </Link>
 
@@ -135,14 +136,14 @@ const Navbar = () => {
                     rel="noopener noreferrer"
                     data-givebutter-widget-id="Xw31DB"
                     data-account="runnershigh"
-                    className={`${link.highlight ? 'bg-brand-navy text-brand-orange px-4 py-2 rounded-md hover:bg-opacity-90' : isActive(link.href) ? 'text-brand-orange' : 'hover:text-brand-orange'} transition-all`}
+                    className={`${link.highlight ? 'text-brand-navy hover:text-brand-orange' : isActive(link.href) ? 'text-brand-orange' : 'hover:text-brand-orange'} transition-all`}
                   >
                     {link.name}
                   </a>
                 ) : (
                   <Link 
                     to={link.href} 
-                    className={`${link.highlight ? 'bg-brand-navy text-brand-orange px-4 py-2 rounded-md hover:bg-opacity-90' : isActive(link.href) ? 'text-brand-orange' : 'hover:text-brand-orange'} transition-all`}
+                    className={`${link.highlight ? 'text-brand-navy hover:text-brand-orange' : isActive(link.href) ? 'text-brand-orange' : 'hover:text-brand-orange'} transition-all`}
                   >
                     {link.name}
                   </Link>
@@ -226,8 +227,10 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4">
       <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-20 text-center md:text-left">
         <div className="max-w-md">
-          <div className="flex items-center gap-3 mb-8 justify-center md:justify-start">
-            <img src={LOGO_URL} alt="Runner's High Logo" className="w-14 h-14 object-contain" referrerPolicy="no-referrer" />
+          <div className="flex items-center gap-4 mb-8 justify-center md:justify-start">
+            <div className="w-40 h-40 rounded-full overflow-hidden flex items-center justify-center bg-transparent">
+              <img src={LOGO_URL} alt="Runner's High Logo" className="w-full h-full object-cover scale-[1.15]" referrerPolicy="no-referrer" />
+            </div>
             <span className="text-2xl font-bold tracking-tight">Runner's High</span>
           </div>
           <p 
@@ -1454,14 +1457,14 @@ const Donate = () => {
 
 const OurSupporters = () => {
   const corporatePartners = [
+    { name: "Costco", logo: "https://logo.clearbit.com/costco.com" },
+    { name: "H-E-B", logo: "https://logo.clearbit.com/heb.com" },
+    { name: "Walmart", logo: "https://logo.clearbit.com/walmart.com" },
+    { name: "Chipotle", logo: "https://logo.clearbit.com/chipotle.com" },
     { name: "HealthFirst", logo: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200&h=100&auto=format&fit=crop" },
     { name: "Stride Athletics", logo: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=200&h=100&auto=format&fit=crop" },
     { name: "Mindful Living", logo: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Community Bank", logo: "https://images.unsplash.com/photo-1501167786227-4cba60f6d58f?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Peak Performance", logo: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Urban Wellness", logo: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Global Outreach", logo: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "The Running Co.", logo: "https://images.unsplash.com/photo-1491553895911-0055eca6402d?q=80&w=200&h=100&auto=format&fit=crop" }
+    { name: "Peak Performance", logo: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&h=100&auto=format&fit=crop" }
   ];
 
   const individualDonors = {

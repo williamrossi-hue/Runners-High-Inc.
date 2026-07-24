@@ -42,10 +42,12 @@ import {
   Navigation,
   CreditCard,
   Lock,
-  CheckCircle2
+  CheckCircle2,
+  User
 } from "lucide-react";
 import { resources, Resource } from "./data/resources";
 import { formatDriveImageUrl } from "./lib/drive";
+import { ImpactGraphicDisplay } from "./components/ImpactGraphicDisplay";
 
 const LOGO_URL = "https://lh3.googleusercontent.com/d/1N5Ixxr4vpAJD7xVuQZXSYHwOGj3Fx_rg";
 const BROCHURE_P1 = "https://storage.googleapis.com/birdseye-public/files/input_file_1.png";
@@ -84,7 +86,7 @@ const COMMUNITY_SHOWCASE_IMAGES = [
     title: "Breaking Stigma & Isolation",
     category: "Recovery & Hope",
     desc: "Creating safe, welcoming spaces where everyone is empowered to grow stronger one step at a time.",
-    url: "https://drive.google.com/file/d/1d8cABChZvKLL1wQLpu-ZvmYDNjKH5SaG/view?usp=drive_link"
+    url: "https://drive.google.com/file/d/10HzWbcjdi70Y1BdeSWko5rRms6XkFJEQ/view?usp=drive_link"
   }
 ];
 
@@ -627,20 +629,8 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Column 2: Fundraising */}
-            <div className="bg-brand-navy p-12 rounded-[2.5rem] shadow-xl text-white flex flex-col">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-14 h-14 bg-white/10 text-brand-orange rounded-2xl flex items-center justify-center">
-                  <DollarSign className="w-8 h-8" />
-                </div>
-                <h3 className="text-3xl font-bold uppercase tracking-tight">OUR IMPACT</h3>
-              </div>
-              
-              <div className="mb-12">
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-4">AMOUNT RAISED</p>
-                <div className="text-7xl font-black text-brand-orange mb-4 tracking-tighter">$3,203</div>
-              </div>
-            </div>
+            {/* Column 2: Fundraising & Impact Graphic Display */}
+            <ImpactGraphicDisplay />
           </div>
         </div>
       </section>
@@ -1069,7 +1059,7 @@ const ResourceDetail = ({ title, type, icon: Icon }: { title: string, type: Reso
 const WhoWeAre = () => {
   const stats = [
     { number: "10+", label: "Annual Race Events" },
-    { number: "$3,200+", label: "Funds Raised for Youth Health" },
+    { number: "$5,302+", label: "Funds Raised for Youth Health" },
     { number: "1", label: "Unified Supportive Community" }
   ];
 
@@ -1078,19 +1068,32 @@ const WhoWeAre = () => {
       name: "William Rossi",
       role: "Founder & Executive Director",
       bio: "Driven by personal loss and a passion for community health, William founded Runner's High to ensure no one runs their recovery journey alone.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop"
+      image: "https://drive.google.com/file/d/1KCyC3FTlMW6gPL21ZA-qgDrvZJdkL-e7/view?usp=drive_link"
     },
     {
-      name: "Sarah Jenkins",
-      role: "Program Coordinator",
-      bio: "A lifelong runner and mental health advocate, Sarah coordinates our race events and educational outreach programs.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
+      name: "Colin Hoth",
+      role: "Leadership & Strategy",
+      bio: "Dedicated to advancing youth wellness programs and building supportive, inclusive communities through athletic events.",
+      image: ""
     },
     {
-      name: "David Chen",
-      role: "Community Outreach",
-      bio: "David focuses on building partnerships with local schools and organizations to expand our impact across the region.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop"
+      name: "Raheel Amnsury",
+      role: "Community Outreach & Programs",
+      bio: "Passionate about youth advocacy, organizing non-competitive 5Ks, and establishing peer health support circles.",
+      image: ""
+    },
+    {
+      name: "Josh Burt",
+      role: "Operations & Wellness Director",
+      bio: "Focuses on event logistics, youth wellness initiatives, and developing active peer support networks.",
+      image: "https://drive.google.com/file/d/1E6Bvm2dI3LpBJb-bc5oNn2clKUT44JMz/view?usp=drive_link",
+      imagePosition: "70% 20%"
+    },
+    {
+      name: "Julia Rhinehart",
+      role: "Youth & Peer Support Specialist",
+      bio: "Empowering students and young adults through fitness education, mental health awareness, and peer guidance.",
+      image: ""
     }
   ];
 
@@ -1210,7 +1213,7 @@ const WhoWeAre = () => {
           <div className="w-24 h-1 bg-brand-orange mx-auto" />
         </div>
         
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {team.map((member, idx) => (
             <motion.div 
               key={idx}
@@ -1218,16 +1221,30 @@ const WhoWeAre = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
               viewport={{ once: true }}
-              className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all text-center group"
+              className="bg-white border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all text-center group flex flex-col justify-between"
             >
-              <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-slate-50 group-hover:border-brand-orange transition-colors">
-                <img src={member.image} alt={member.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              <div>
+                <div className="w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-slate-100 group-hover:border-brand-orange transition-colors bg-slate-100 flex items-center justify-center shadow-inner">
+                  {member.image ? (
+                    <img 
+                      src={formatDriveImageUrl(member.image)} 
+                      alt={member.name} 
+                      className="w-full h-full object-cover" 
+                      style={member.imagePosition ? { objectPosition: member.imagePosition } : undefined}
+                      referrerPolicy="no-referrer" 
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-slate-100 text-slate-400 flex flex-col items-center justify-center">
+                      <User className="w-16 h-16 stroke-[1.5]" />
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-1">{member.name}</h3>
+                <p className="text-brand-orange font-bold text-sm uppercase tracking-wider mb-4">{member.role}</p>
+                <p className="text-slate-600 leading-relaxed">
+                  {member.bio}
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-1">{member.name}</h3>
-              <p className="text-brand-orange font-bold text-sm uppercase tracking-wider mb-4">{member.role}</p>
-              <p className="text-slate-600 leading-relaxed">
-                {member.bio}
-              </p>
             </motion.div>
           ))}
         </div>

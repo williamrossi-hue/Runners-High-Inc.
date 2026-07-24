@@ -45,10 +45,48 @@ import {
   CheckCircle2
 } from "lucide-react";
 import { resources, Resource } from "./data/resources";
+import { formatDriveImageUrl } from "./lib/drive";
+
 const LOGO_URL = "https://lh3.googleusercontent.com/d/1N5Ixxr4vpAJD7xVuQZXSYHwOGj3Fx_rg";
 const BROCHURE_P1 = "https://storage.googleapis.com/birdseye-public/files/input_file_1.png";
 const BROCHURE_P2 = "https://storage.googleapis.com/birdseye-public/files/input_file_2.png";
 const BANNER_URL = "https://storage.googleapis.com/birdseye-public/files/input_file_3.png";
+
+// Front page showcase & theme images
+const DEFAULT_PHOENIX_JOURNEY = "https://drive.google.com/file/d/1e_H0hUfwieL5ViRSLQhPjLrQFFrHXJvA/view?usp=sharing";
+const DEFAULT_GROUP_PHOTO = "https://drive.google.com/file/d/1lGSQfHhG6Xvif0LHUO6-YgfTshDQ6SI_/view?usp=sharing";
+
+// Community Work Showcase Gallery Images (Featured on Front Page)
+const COMMUNITY_SHOWCASE_IMAGES = [
+  {
+    id: "run-5k",
+    title: "Community Fun Runs & 5Ks",
+    category: "Physical Health & Unity",
+    desc: "Bringing youth, families, and runners together across town parks for non-competitive 5K runs.",
+    url: "https://drive.google.com/file/d/115HI_oKs2lNv8kD4NU6vqt2wFM_RjmQL/view?usp=sharing"
+  },
+  {
+    id: "youth-mental",
+    title: "Youth Wellness & Peer Support",
+    category: "Mental Health & Empowerment",
+    desc: "Empowering young adults with coping strategies, peer support circles, and healthy habits.",
+    url: "https://drive.google.com/file/d/1lGSQfHhG6Xvif0LHUO6-YgfTshDQ6SI_/view?usp=drive_link"
+  },
+  {
+    id: "nutrition-habits",
+    title: "Providing Nutrition & Healthy Habits",
+    category: "Nutrition & Healthy Living",
+    desc: "Promoting healthy eating habits, wholesome nutrition education, and wellness resources for youth and families.",
+    url: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=1600&auto=format&fit=crop"
+  },
+  {
+    id: "breaking-isolation",
+    title: "Breaking Stigma & Isolation",
+    category: "Recovery & Hope",
+    desc: "Creating safe, welcoming spaces where everyone is empowered to grow stronger one step at a time.",
+    url: "https://drive.google.com/file/d/1d8cABChZvKLL1wQLpu-ZvmYDNjKH5SaG/view?usp=drive_link"
+  }
+];
 
 // --- Components ---
 
@@ -292,29 +330,43 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 const Home = () => {
   const [showBrochure, setShowBrochure] = useState(false);
 
+  const [phoenixJourneyUrl] = useState(() => {
+    return DEFAULT_PHOENIX_JOURNEY;
+  });
+
+  const [groupPhotoUrl] = useState(() => {
+    return DEFAULT_GROUP_PHOTO;
+  });
+
   return (
     <>
-      {/* Hero */}
-      <section className="relative h-[85vh] flex items-center justify-center text-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
+      {/* Hero - Featuring Phoenix Journey Header */}
+      <section className="relative min-h-[85vh] flex flex-col items-center justify-center text-center overflow-hidden bg-brand-navy py-16">
+        <div className="absolute inset-0 z-0 opacity-40">
           <img 
-            src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?q=80&w=2070&auto=format&fit=crop" 
-            alt="Runners participating in community event" 
-            className="w-full h-full object-cover"
+            src={formatDriveImageUrl(phoenixJourneyUrl)} 
+            alt="Phoenix Journey Background" 
+            className="w-full h-full object-cover blur-sm"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-brand-navy/70" />
+          <div className="absolute inset-0 bg-brand-navy/80" />
         </div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
-            className="mb-8"
+            className="mb-8 max-w-4xl mx-auto overflow-hidden rounded-3xl shadow-2xl border border-white/10 relative bg-black/30"
           >
-            <img src={BANNER_URL} alt="Runners High Banner" className="max-w-full h-auto mx-auto rounded-lg shadow-2xl" referrerPolicy="no-referrer" />
+            <img 
+              src={formatDriveImageUrl(phoenixJourneyUrl)} 
+              alt="Phoenix Journey Header" 
+              className="w-full h-auto max-h-[520px] object-cover mx-auto rounded-3xl" 
+              referrerPolicy="no-referrer" 
+            />
           </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -323,10 +375,12 @@ const Home = () => {
           >
             Welcome, Join us in growing stronger one step at a time
           </motion.h1>
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.4 }}
+            className="flex items-center justify-center"
           >
             <a 
               href="https://givebutter.com/Xw31DB"
@@ -382,10 +436,10 @@ const Home = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
                 <img 
-                  src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Community support" 
+                  src={formatDriveImageUrl(groupPhotoUrl)} 
+                  alt="Group Photo - Community Support" 
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -417,6 +471,58 @@ const Home = () => {
                 <p className="font-bold text-brand-navy text-lg">{item}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Showcasing Our Work */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-block bg-brand-orange/20 text-brand-navy px-4 py-1 rounded-full text-sm font-bold uppercase tracking-widest mb-4">
+              Our Work In Action
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-navy mb-6">
+              Showcasing Our Community Impact
+            </h2>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Discover how Runner's High empowers youth, families, and communities through running, physical health initiatives, and mental wellness advocacy.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {COMMUNITY_SHOWCASE_IMAGES.map((item) => {
+              const displayUrl = formatDriveImageUrl(item.url);
+              return (
+                <motion.div
+                  key={item.id}
+                  whileHover={{ y: -6 }}
+                  className="group bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all flex flex-col"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-slate-200">
+                    <img
+                      src={displayUrl}
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="absolute top-3 left-3 bg-brand-navy text-brand-orange px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-md">
+                      {item.category}
+                    </div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow justify-between">
+                    <div>
+                      <h3 className="font-bold text-xl text-brand-navy mb-2 group-hover:text-brand-orange transition-colors">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-slate-600 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1457,14 +1563,38 @@ const Donate = () => {
 
 const OurSupporters = () => {
   const corporatePartners = [
-    { name: "Costco", logo: "https://logo.clearbit.com/costco.com" },
-    { name: "H-E-B", logo: "https://logo.clearbit.com/heb.com" },
-    { name: "Walmart", logo: "https://logo.clearbit.com/walmart.com" },
-    { name: "Chipotle", logo: "https://logo.clearbit.com/chipotle.com" },
-    { name: "HealthFirst", logo: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Stride Athletics", logo: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Mindful Living", logo: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=200&h=100&auto=format&fit=crop" },
-    { name: "Peak Performance", logo: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=200&h=100&auto=format&fit=crop" }
+    { 
+      name: "Walmart", 
+      filename: "Walmart Logo.png",
+      logo: formatDriveImageUrl(
+        localStorage.getItem("runners_high_logo_Walmart") || "",
+        "https://logo.clearbit.com/walmart.com"
+      ) 
+    },
+    { 
+      name: "Chipotle", 
+      filename: "Chipotle Logo.png",
+      logo: formatDriveImageUrl(
+        localStorage.getItem("runners_high_logo_Chipotle") || "",
+        "https://logo.clearbit.com/chipotle.com"
+      ) 
+    },
+    { 
+      name: "Costco", 
+      filename: "Costco Logo.jpg",
+      logo: formatDriveImageUrl(
+        localStorage.getItem("runners_high_logo_Costco") || "",
+        "https://logo.clearbit.com/costco.com"
+      ) 
+    },
+    { 
+      name: "H-E-B", 
+      filename: "HEB LOGO.jpg",
+      logo: formatDriveImageUrl(
+        localStorage.getItem("runners_high_logo_HEB") || "",
+        "https://logo.clearbit.com/heb.com"
+      ) 
+    }
   ];
 
   const individualDonors = {
@@ -1505,7 +1635,7 @@ const OurSupporters = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto mb-20">
           {corporatePartners.map((partner, idx) => (
             <motion.div 
               key={idx}
@@ -1513,14 +1643,19 @@ const OurSupporters = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: idx * 0.05 }}
               viewport={{ once: true }}
-              className="bg-white border border-slate-100 rounded-2xl p-6 flex items-center justify-center grayscale hover:grayscale-0 transition-all hover:shadow-lg group"
+              className="bg-white border border-slate-100 rounded-3xl p-8 flex flex-col items-center justify-center transition-all hover:shadow-xl hover:border-brand-orange/30 group"
             >
-              <img 
-                src={partner.logo} 
-                alt={partner.name} 
-                className="max-h-12 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity" 
-                referrerPolicy="no-referrer"
-              />
+              <div className="h-16 w-full flex items-center justify-center mb-4">
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name} 
+                  className="max-h-14 max-w-full w-auto object-contain transition-transform group-hover:scale-105" 
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <span className="font-bold text-brand-navy text-sm md:text-base group-hover:text-brand-orange transition-colors">
+                {partner.name}
+              </span>
             </motion.div>
           ))}
         </div>

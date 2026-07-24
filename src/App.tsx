@@ -48,6 +48,7 @@ import {
 import { resources, Resource } from "./data/resources";
 import { formatDriveImageUrl } from "./lib/drive";
 import { ImpactGraphicDisplay } from "./components/ImpactGraphicDisplay";
+import { SecurityDashboard } from "./components/SecurityDashboard";
 
 const LOGO_URL = "https://lh3.googleusercontent.com/d/1N5Ixxr4vpAJD7xVuQZXSYHwOGj3Fx_rg";
 const BROCHURE_P1 = "https://storage.googleapis.com/birdseye-public/files/input_file_1.png";
@@ -113,6 +114,7 @@ const Navbar = () => {
     },
     { name: "Who we are", href: "/who-we-are" },
     { name: "Upcoming events", href: "/events" },
+    { name: "AI Security Starter", href: "/ai-security" },
     { name: "Donate Today", href: "/donate", highlight: true },
     { name: "Partners", href: "/partners" },
     { name: "Frequently asked questions", href: "/faq" },
@@ -1942,27 +1944,31 @@ const PlaceholderPage = ({ title }: { title: string }) => (
   </div>
 );
 
-const Newsletter = () => (
-  <section className="py-24 bg-white">
-    <div className="max-w-4xl mx-auto px-4 text-center">
-      <h2 className="text-4xl font-bold text-brand-navy mb-6">CHECK OUT OUR NEWSLETTER</h2>
-      <p className="text-slate-600 text-lg leading-relaxed mb-10">
-        Each week we send out our newsletter to your email notifying you of upcoming events, interesting facts about mental health & drug addiction recovery, new sponsors and companies we partner up with, and new resources & research to keep y'all up to date in the health-conscious world!
-      </p>
-      <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
-        <input 
-          type="email" 
-          placeholder="Enter your email" 
-          className="flex-1 px-6 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-orange transition-all font-sans"
-          required
-        />
-        <button className="bg-brand-navy text-brand-orange px-10 py-4 rounded-xl font-bold hover:bg-opacity-90 transition-all">
-          Join
-        </button>
-      </form>
-    </div>
-  </section>
-);
+const Newsletter = () => {
+  useEffect(() => {
+    if ((window as any).Mailmunch && typeof (window as any).Mailmunch.init === "function") {
+      try {
+        (window as any).Mailmunch.init();
+      } catch (err) {
+        // ignore
+      }
+    }
+  }, []);
+
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-4xl mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold text-brand-navy mb-6">CHECK OUT OUR NEWSLETTER</h2>
+        <p className="text-slate-600 text-lg leading-relaxed mb-10">
+          Each week we send out our newsletter to your email notifying you of upcoming events, interesting facts about mental health & drug addiction recovery, new sponsors and companies we partner up with, and new resources & research to keep y'all up to date in the health-conscious world!
+        </p>
+        <div className="max-w-lg mx-auto">
+          <div translate="no" className="mailmunch-forms-widget-1171540"></div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 // --- Main App ---
 
@@ -1984,6 +1990,7 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/partners" element={<OurSupporters />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/ai-security" element={<SecurityDashboard />} />
         </Routes>
       </Layout>
     </Router>

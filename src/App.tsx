@@ -1945,16 +1945,6 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 const Newsletter = () => {
-  useEffect(() => {
-    if ((window as any).Mailmunch && typeof (window as any).Mailmunch.init === "function") {
-      try {
-        (window as any).Mailmunch.init();
-      } catch (err) {
-        // ignore
-      }
-    }
-  }, []);
-
   return (
     <section className="py-24 bg-white">
       <div className="max-w-4xl mx-auto px-4 text-center">
@@ -1962,8 +1952,81 @@ const Newsletter = () => {
         <p className="text-slate-600 text-lg leading-relaxed mb-10">
           Each week we send out our newsletter to your email notifying you of upcoming events, interesting facts about mental health & drug addiction recovery, new sponsors and companies we partner up with, and new resources & research to keep y'all up to date in the health-conscious world!
         </p>
-        <div className="max-w-lg mx-auto">
-          <div translate="no" className="mailmunch-forms-widget-1171540"></div>
+        
+        <div id="mc_embed_shell" className="max-w-xl mx-auto bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-sm">
+          <div id="mc_embed_signup">
+            <form 
+              action="https://runnershighngo.us20.list-manage.com/subscribe/post?u=a55dd708170ea525e783386c2&amp;id=b08ac864c8&amp;f_id=004b64eef0" 
+              method="post" 
+              id="mc-embedded-subscribe-form" 
+              name="mc-embedded-subscribe-form" 
+              className="validate flex flex-col gap-4" 
+              target="_blank"
+            >
+              <div id="mc_embed_signup_scroll">
+                <div className="mc-field-group text-left mb-4">
+                  <label htmlFor="mce-EMAIL" className="block text-sm font-bold text-brand-navy mb-2">
+                    Email Address <span className="text-brand-orange">*</span>
+                  </label>
+                  <input 
+                    type="email" 
+                    name="EMAIL" 
+                    className="required email w-full px-5 py-4 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-orange text-slate-800 transition-all" 
+                    id="mce-EMAIL" 
+                    placeholder="Enter your email address"
+                    required 
+                    defaultValue="" 
+                  />
+                </div>
+
+                <div id="mce-responses" className="clear foot">
+                  <div className="response" id="mce-error-response" style={{ display: "none" }}></div>
+                  <div className="response" id="mce-success-response" style={{ display: "none" }}></div>
+                </div>
+
+                {/* Real people should not fill this in to prevent form bot signups */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
+                  <input 
+                    type="text" 
+                    name="b_a55dd708170ea525e783386c2_b08ac864c8" 
+                    tabIndex={-1} 
+                    defaultValue="" 
+                  />
+                </div>
+
+                <div className="optionalParent mt-4">
+                  <div className="clear foot flex flex-col items-center gap-4">
+                    <button 
+                      type="submit" 
+                      name="subscribe" 
+                      id="mc-embedded-subscribe" 
+                      className="button w-full bg-brand-navy text-brand-orange hover:bg-slate-800 font-extrabold px-8 py-4 rounded-xl text-lg transition-all shadow-md cursor-pointer"
+                    >
+                      Subscribe
+                    </button>
+                    
+                    <p style={{ margin: "0px auto" }}>
+                      <a 
+                        href="http://eepurl.com/jvWK0Q" 
+                        title="Mailchimp - email marketing made easy and fun"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <span className="inline-block bg-transparent rounded-md">
+                          <img 
+                            className="refferal_badge" 
+                            src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" 
+                            alt="Intuit Mailchimp" 
+                            style={{ width: "220px", height: "40px", display: "flex", padding: "2px 0px", justifyContent: "center", alignItems: "center" }} 
+                          />
+                        </span>
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </section>

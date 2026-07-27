@@ -48,7 +48,6 @@ import {
 import { resources, Resource } from "./data/resources";
 import { formatDriveImageUrl } from "./lib/drive";
 import { ImpactGraphicDisplay } from "./components/ImpactGraphicDisplay";
-import { SecurityDashboard } from "./components/SecurityDashboard";
 
 const LOGO_URL = "https://lh3.googleusercontent.com/d/1N5Ixxr4vpAJD7xVuQZXSYHwOGj3Fx_rg";
 const BROCHURE_P1 = "https://storage.googleapis.com/birdseye-public/files/input_file_1.png";
@@ -114,7 +113,6 @@ const Navbar = () => {
     },
     { name: "Who we are", href: "/who-we-are" },
     { name: "Upcoming events", href: "/events" },
-    { name: "AI Security Starter", href: "/ai-security" },
     { name: "Donate Today", href: "/donate", highlight: true },
     { name: "Partners", href: "/partners" },
     { name: "Frequently asked questions", href: "/faq" },
@@ -2053,7 +2051,6 @@ export default function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="/partners" element={<OurSupporters />} />
           <Route path="/faq" element={<FAQ />} />
-          <Route path="/ai-security" element={<SecurityDashboard />} />
         </Routes>
       </Layout>
     </Router>
